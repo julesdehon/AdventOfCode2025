@@ -6,10 +6,10 @@ from typing import Callable
 def get_operator(direction: str) -> Callable[[int, int], int]:
     if direction == "R":
         return operator.add
-    elif direction == "L":
+    if direction == "L":
         return operator.sub
-    else:
-        raise ValueError
+
+    raise ValueError
 
 
 def main() -> None:

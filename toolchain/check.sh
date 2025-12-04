@@ -23,7 +23,7 @@ fi
 echo "${GREEN}flake8 did not find any errors${NO_COLOR}"
 
 echo "Running pylint"
-if ! pylint $(git ls-files "$_ROOT_DIR/*.py") ; then
+if ! pylint $(git ls-files "$_ROOT_DIR/**/*.py") ; then
     echo "${RED}[RESULT:ERROR] pylint found files with errors: fix these errors manually${NO_COLOR}"
     exit 1
 fi
