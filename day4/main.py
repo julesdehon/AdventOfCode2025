@@ -2,7 +2,7 @@ from pathlib import Path
 
 
 def around(grid: list[str], x: int, y: int) -> list[tuple[int, int]]:
-    ret = []
+    surrounding_coords = []
     for dx in [-1, 0, 1]:
         for dy in [-1, 0, 1]:
             if (dx, dy) == (0, 0):
@@ -14,9 +14,9 @@ def around(grid: list[str], x: int, y: int) -> list[tuple[int, int]]:
             if not 0 <= y + dy < len(grid):
                 continue
 
-            ret.append((x + dx, y + dy))
+            surrounding_coords.append((x + dx, y + dy))
 
-    return ret
+    return surrounding_coords
 
 
 def is_accessible(grid: list[str], x: int, y: int) -> bool:
@@ -31,14 +31,14 @@ def is_accessible(grid: list[str], x: int, y: int) -> bool:
 def clear(grid: list[str]) -> tuple[int, list[str]]:
     num_accessible_rolls = 0
     new_grid = []
-    for y in range(len(grid)):
+    for y, row in enumerate(grid):
         new_row = ""
-        for x in range(len(grid[y])):
-            if grid[y][x] == "@" and is_accessible(grid, x, y):
+        for x, _ in enumerate(row):
+            if row[x] == "@" and is_accessible(grid, x, y):
                 num_accessible_rolls += 1
                 new_row += "."
             else:
-                new_row += grid[y][x]
+                new_row += row[x]
 
         new_grid.append(new_row)
 
