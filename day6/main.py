@@ -22,8 +22,6 @@ def main() -> None:
         if key
     ]
     operators = [parse(operator) for operator in input_lines[-1].split()]
-    print(columns)
-    print(column_groups)
 
     grand_total_p1 = 0
     grand_total_p2 = 0
