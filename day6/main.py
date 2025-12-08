@@ -17,18 +17,18 @@ def main() -> None:
         for i in range(len(input_lines[0]))
     ]
     column_groups = [
-        list([int(x) for x in group])
+        list(int(x) for x in group)
         for key, group in groupby(columns, key=lambda x: x.strip() != "")
         if key
     ]
-    operators = [parse(operator) for operator in input_lines[-1].split()]
+    operators = [parse(op) for op in input_lines[-1].split()]
 
     grand_total_p1 = 0
     grand_total_p2 = 0
-    for i in range(len(operators)):
+    for i, op in enumerate(operators):
         ns = [row[i] for row in rows]
-        grand_total_p1 += reduce(operators[i], ns)
-        grand_total_p2 += reduce(operators[i], column_groups[i])
+        grand_total_p1 += reduce(op, ns)
+        grand_total_p2 += reduce(op, column_groups[i])
 
     print(grand_total_p1)
     print(grand_total_p2)
